@@ -40,6 +40,7 @@ class Header extends Component {
             <div className='ml1 pointer black' onClick={() => {
               localStorage.removeItem(GC_USER_ID)
               localStorage.removeItem(GC_AUTH_TOKEN)
+              localStorage.removeItem('username')
               this.props.history.push(`/new/1`)
             }}>logout</div>
             :
