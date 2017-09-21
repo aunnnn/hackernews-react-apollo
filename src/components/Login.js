@@ -4,11 +4,15 @@ import { gql, graphql, compose } from 'react-apollo'
 
 class Login extends Component {
 
-  state = {
-    login: true, // switch between Login and SignUp
-    email: '',
-    password: '',
-    name: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      login: true,
+      email: '',
+      password: '',
+      name: '',
+    }
+    this._confirm = this._confirm.bind(this)
   }
 
   render() {
@@ -40,7 +44,7 @@ class Login extends Component {
         <div className='flex mt3'>
           <div
             className='pointer mr2 button'
-            onClick={() => this._confirm()}
+            onClick={this._confirm}
           >
             {this.state.login ? 'login' : 'create account' }
           </div>
@@ -56,19 +60,20 @@ class Login extends Component {
   }
 
   _confirm = async () => {
-    const { name, email, password } = this.state
     if (this.state.login) {
+      const { name, email, password } = this.state
       const result = await this.props.signinUserMutation({
         variables: {
           email,
           password
         }
       })
-      const id = result.data.signinUser.user.id
-      const token = result.data.signinUser.token
-      const name = result.data.signinUser.user.name
-      this._saveUserData(id, token, name)
+      const _id = result.data.signinUser.user.id
+      const _token = result.data.signinUser.token
+      const _name = result.data.signinUser.user.name
+      this._saveUserData(_id, _token, _name)
     } else {
+      const { name, email, password } = this.state
       const result = await this.props.createUserMutation({
         variables: {
           name,
@@ -76,10 +81,10 @@ class Login extends Component {
           password
         }
       })
-      const id = result.data.signinUser.user.id
-      const token = result.data.signinUser.token
-      const name = result.data.signinUser.user.name
-      this._saveUserData(id, token, name)
+      const _id = result.data.signinUser.user.id
+      const _token = result.data.signinUser.token
+      const _name = result.data.signinUser.user.name
+      this._saveUserData(_id, _token, _name)
     }
     this.props.history.push(`/`)
   }
