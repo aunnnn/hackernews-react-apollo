@@ -3,4 +3,4 @@ Made from doing https://www.howtographql.com/ tutorial.
 
 Used this [buildpack.](https://github.com/mars/create-react-app-buildpack)
 
-[Demo](https://hackernews-react-apollo-aglurxvrri.now.sh/)
+[Demo](https://hackernews-react-apollo-pvzzygxcxz.now.sh)
